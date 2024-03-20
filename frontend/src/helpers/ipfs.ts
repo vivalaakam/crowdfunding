@@ -12,7 +12,7 @@ export async function set(data: string): Promise<string> {
             method: "POST",
             body: form,
             headers: {
-                "Authorization": "Basic YWxpY2U6ZGlydHktbGl0dGxlLXNlY3JldA==",
+                "Authorization": `Basic ${process.env.NEXT_IPFS_SECRET}`,
                 "accept-type": "application/json",
             },
         },
@@ -28,7 +28,7 @@ export async function get<T>(hash: string): Promise<T> {
         {
             method: "POST",
             headers: {
-                "Authorization": "Basic YWxpY2U6ZGlydHktbGl0dGxlLXNlY3JldA==",
+                "Authorization": `Basic ${process.env.NEXT_IPFS_SECRET}`,
                 "accept-type": "application/json",
             },
         },
