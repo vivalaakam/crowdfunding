@@ -1,0 +1,7 @@
+{
+  "name": "crowfunding",
+  "workspaces": [
+    "contracts",
+    "frontend"
+  ]
+}
