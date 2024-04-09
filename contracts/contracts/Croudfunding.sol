@@ -134,7 +134,7 @@ contract CrowdfundingList is Initializable, PausableUpgradeable, OwnableUpgradea
         address id;
         address payable creator;
         uint userAmount;
-        Crowdfunding.Info info;        
+        Crowdfunding.Info info;
     }
 
     event CrowdfundingCreated(address crowdfunding, address creator, uint goal, uint deadline, string metadata);
@@ -168,6 +168,10 @@ contract CrowdfundingList is Initializable, PausableUpgradeable, OwnableUpgradea
         return _format(finishedCrowdfundingArray, _participant);
     }
 
+    function getItem(address _id, address _participant) public view returns (CrowdfundingInfo memory) {
+        return _formatRow(_id, _participant);
+    }
+
     function _format(address[] storage list, address _participant) private view returns (CrowdfundingInfo[] memory) {
         CrowdfundingInfo[] memory result = new CrowdfundingInfo[](list.length);
         for (uint i = 0; i < list.length; i++) {
@@ -187,6 +191,23 @@ contract CrowdfundingList is Initializable, PausableUpgradeable, OwnableUpgradea
             );
         }
         return result;
+    }
+
+    function _formatRow(address _id, address _participant) private view returns (CrowdfundingInfo memory) {
+        (uint goal, uint current, uint deadline, string memory  metadata, uint256 metadataHash) = crowdfunding[_id].info();
+
+        return CrowdfundingInfo(
+            _id,
+            crowdfunding[_id].creator(),
+            crowdfunding[_id].contributions(_participant),
+            Crowdfunding.Info({
+                goal: goal,
+                current: current,
+                deadline: deadline,
+                metadata: metadata,
+                metadataHash: metadataHash
+            })
+        );
     }
 
     function create(uint _goal, uint _duration, string memory _metadata, uint256 _metadataHash) external whenNotPaused returns (address)  {

@@ -1,9 +1,9 @@
 import {Create} from "@/src/components";
 import {useCallback} from "react";
-import {useCrowdfunding} from "@/src/hooks/useCroudfunding";
+import {useCrowdfundingList} from "@/src/hooks/useCroudfundingList";
 
 export default function CreateScreen() {
-    const crowdfunding = useCrowdfunding();
+    const crowdfunding = useCrowdfundingList();
     const onCreate = useCallback(async (formData: Record<string, any>) => {
         await crowdfunding.create(formData.name, formData.description, formData.image, formData.goal, formData.deadline);
     }, [crowdfunding])

@@ -1,0 +1,39 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, 1fr);
+  grid-template-rows: 55px 1fr 55px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  .preview {
+    grid-area: 1 / 1 / 4 / 2;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  .title {
+    grid-area: 1 / 2 / 2 / 5;
+  }
+
+  .description {
+    grid-area: 2 / 2 / 3 / 5;
+  }
+
+  .info {
+    grid-area: 3 / 2 / 4 / 4;
+  }
+
+  .buttons {
+    grid-area: 3 / 4 / 4 / 5;
+    display: flex;
+    gap: 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+

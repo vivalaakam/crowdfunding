@@ -6,6 +6,8 @@ export async function set(data: string): Promise<string> {
     const form = new FormData();
     form.append('metadata.json', myblob, 'metadata.json');
 
+    console.log('NEXT_IPFS_NODE', process.env.NEXT_IPFS_NODE)
+
     const response = await fetch(
         `${process.env.NEXT_IPFS_NODE}/api/v0/add?pin=true`,
         {

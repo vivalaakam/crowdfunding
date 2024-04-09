@@ -36,6 +36,15 @@ export function Header() {
             <Link href="/create">Create</Link>
             <Link href="/verify">Verify</Link>
             <Link href="/rejected">Rejected</Link>
+            {appData.provider && (
+                <select value={appData.address} onChange={(e) => {
+                    appData.setAddress(e.target.value);
+                }}>
+                    {appData.accounts.map((account) => (
+                        <option key={account} value={account}>{account}</option>
+                    ))}
+                </select>
+            )}
             {appData.provider && balance.toFixed(4)}
         </header>
     )

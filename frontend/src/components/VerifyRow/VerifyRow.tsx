@@ -17,6 +17,8 @@ export function VerifyRow({row, onApprove, onReject}: VerifyRowProps) {
         onReject(row.id);
     }, [row.id, onReject])
 
+    console.log('row', row);
+
     return (
         <div className={styles.container}>
             <div className={styles.preview}>

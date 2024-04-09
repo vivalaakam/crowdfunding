@@ -1,7 +1,11 @@
 import {createContext} from "react";
 import {AccountData} from "@/src/types";
 
-export const EthereumContext = createContext<AccountData & { connect: () => void, disconnect: () => void }>({
+export const EthereumContext = createContext<AccountData & {
+    connect: () => void,
+    disconnect: () => void,
+    setAddress: (address: string) => void,
+}>({
     address: "",
     chainId: "",
     network: "",
@@ -10,4 +14,6 @@ export const EthereumContext = createContext<AccountData & { connect: () => void
     },
     disconnect: () => {
     },
+    setAddress: (address: string) => {
+    }
 });

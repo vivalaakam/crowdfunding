@@ -13,7 +13,7 @@ export type CrowdfundingInfo = {
     goal: Decimal;
     current: Decimal;
     userAmount: Decimal;
-    deadline: number
+    deadline: Date;
     metadata: CrowdfundingInfoMetadata
 }
 
@@ -30,4 +30,5 @@ export interface AccountData {
     network: string;
     signer: JsonRpcSigner | null;
     provider: BrowserProvider | null;
+    accounts: string[];
 }
